@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<HTML>
+	<HEAD>
+		<meta charset="UTF-8" >
+		<TITLE>CamanJS Class Test</TITLE>
+		<script type="text/javascript" src="../CamanJS-4.1.1/dist/caman.full.js"></script>
+		<script type="text/javascript" src="test.js"></script>
+	</HEAD>
+
+	<body>
+		<h1>CamanJS Class Test</h1>
+		<img id="kobe_img" width="500" height="500" src="kobe.jpg" />
+		<canvas id="kobe_canvas" width="500" height="500"></canvas>
+		<script type="text/javascript">
+			var c = document.getElementById("kobe_canvas");
+			var cxt = c.getContext("2d");
+			var img = document.getElementById("kobe_img");
+			cxt.drawImage(img,0,0);
+		</script>
+		<button tpye="button" onclick="begin()">Begin</button>
+	</body>
+</HTML>
