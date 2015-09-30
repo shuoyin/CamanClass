@@ -1,7 +1,20 @@
 function begin(){
-	var p = new Caman.PixelInfo();
 	var cxt = document.getElementById("kobe_canvas").getContext("2d");
-	p.setContext(cxt);
-	var a = p.getPixel(100,100);
-	document.write(a.toString());
+	Caman("#kobe_img",function(){
+		var a = this.getPixel(20,50);
+		console.log(a);
+	});
+	var Animal;
+	Animal = (function(){
+		function Animal(name){
+			this.name = name;
+		}
+
+		Animal.prototype.makenoise = function(){
+			console.log("lalalal");
+		}
+		return Animal;
+	})();
+	var cat = new Animal("cat");
+	cat.makenoise();
 }
