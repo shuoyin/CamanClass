@@ -1,0 +1,43 @@
+homepage: http://camanjs.com/
+
+The main focus of CamanJS is manipulating images using the HTML5 canvas and Javascript
+
+Built-in Functionality
+	Brightness //range is -100 to 100, values <0 darken, >0 brighten
+		   //bright+=value/100*255
+		this.brightness(value)
+
+	Channels //modify the R,G,B channels individually
+		this.channels({red:r_value, green: g_value, blue: b_value});
+		must given one argument with at least one channel. the r/g/b_value is the adjustment value similar to brightness
+	
+	Clip //clips the color value when they fall outside of the given range, from 0 to 100(percent)
+		this.clip(50)
+
+	Gamma //adjust the gamma of the image. Range between 0 to infinity, values less than 1 will lessen the contrast
+	      //while greater than 1 will increase it
+		this.gamma(1.4);	
+	
+	greyscale //convers the image to grey scale
+		this.greyscale();
+
+	... more on its website http://camanjs.com/guides/#Builtin
+
+Register User-Defined Filters
+	Caman.Filter.register("filtername",function(para){
+		...//pre calculate, done immediately
+		return this.process("filtername", function(rgba){
+			.../pixel wise operater, operate on each pixel
+			return rgba;
+		});
+	});
+
+Common process procedure
+	Caman("#canvas_id",image, function(){
+		this.step1(para).step2(para)....render();
+	});
+
+The user-defined filters can only deal with one pixel. Because the this.process method only give the infomation about current pixel
+
+We can retrive the info about pixel through the class PixelInfo. But unfortunately, this class is invisable outside the file caman.full.js, we need to 
+import out it manually. adding this.PixelInfo=PixelInfo in the file.
